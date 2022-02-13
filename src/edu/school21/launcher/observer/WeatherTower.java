@@ -1,14 +1,15 @@
 package edu.school21.launcher.observer;
 
 import edu.school21.launcher.models.Coordinates;
-import edu.school21.launcher.models.Flyable;
+import edu.school21.launcher.weatherProvider.WeatherProvider;
 
 public class WeatherTower extends Tower {
-	public String getWeather(Coordinates coordinates){
 
+	public String getWeather(Coordinates coordinates){
+		return WeatherProvider.getProvider().getCurrentWeather(coordinates);
 	}
 
-	void changeWeather() {
-
+	public void changeWeather() {
+		conditionsChanged();
 	}
 }
