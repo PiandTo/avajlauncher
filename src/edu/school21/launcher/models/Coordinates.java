@@ -23,4 +23,15 @@ public class Coordinates {
 		return height;
 	}
 
+	public void setLongitude(int longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setLatitude(int latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 }
