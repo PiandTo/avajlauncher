@@ -21,24 +21,20 @@ public class Helicopter extends Aircraft implements Flyable {
 		switch(state) {
 			case "RAIN":
 				coordinates.setLongitude(coordinates.getLongitude() + 5);
-				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too rainy!!!");
-				simulation.newLine();
+				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too rainy!!!\n");
 				break;
 			case "SUN":
 				coordinates.setLongitude(coordinates.getLongitude() + 10);
 				coordinates.setHeight(coordinates.getHeight() + 2);
-				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too hot!!!");
-				simulation.newLine();
+				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too hot!!!\n");
 				break;
 			case "FOG":
 				coordinates.setLongitude(coordinates.getLongitude() + 1);
-				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too foggy!!!");
-				simulation.newLine();
+				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too foggy!!!\n");
 				break;
 			case "SNOW":
 				coordinates.setHeight(coordinates.getHeight() - 12);
-				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too snowy!!!");
-				simulation.newLine();
+				simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): It is too snowy!!!\n");
 				break;
 		}
 		if (coordinates.getHeight() < 0)
@@ -46,10 +42,9 @@ public class Helicopter extends Aircraft implements Flyable {
 		if (coordinates.getHeight() > 100)
 			coordinates.setHeight(100);
 		if (coordinates.getHeight() == 0){
-			weatherTower.unregister(this);
-			System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") landing.");
-			simulation.close();
+			this.unregisterTower(weatherTower);
 		}
+		simulation.close();
 	}
 
 	@Override
@@ -57,20 +52,16 @@ public class Helicopter extends Aircraft implements Flyable {
 		simulation = new BufferedWriter(new FileWriter("simulation.txt", true));
 		this.weatherTower = weatherTower;
 		this.weatherTower.register(this);
-		simulation.write("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") registered to weather tower.");
-		simulation.newLine();
+		simulation.write("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") registered to weather tower.\n");
 		simulation.close();
 	}
 
 	@Override
 	public void unregisterTower(WeatherTower weatherTower) throws IOException {
 		simulation = new BufferedWriter(new FileWriter("simulation.txt", true));
-		simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") landing.");
-		simulation.newLine();
-		this.weatherTower = weatherTower;
-		this.weatherTower.register(this);
-		simulation.write("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") registered to weather tower.");
-		simulation.newLine();
+		simulation.write(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") landing.\n");
+		this.weatherTower.unregister(this);
+		simulation.write("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ") unregistered to weather tower.\n");
 		simulation.close();
 	}
 }

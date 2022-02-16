@@ -12,7 +12,7 @@ public class Program {
 	private static void printError ()
 	{
 		System.out.print("Incorrect simulation file");
-		System.exit(1);
+		System.exit(-1);
 	}
 
 	private static void validateString(String[] str) throws NotCorrectFileException, NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -35,8 +35,8 @@ public class Program {
 		WeatherTower weatherTower = new WeatherTower();
 		HashingWords hs = new HashingWords();
 		String name;
-//		FileReader fr = new FileReader("/Users/mikhailmalev/Documents/School21/AvajLauncher/scenario.txt");
-		FileReader fr = new FileReader(args[0]);
+		FileReader fr = new FileReader("/Users/mikhailmalev/Documents/School21/AvajLauncher/scenario.txt");
+//		FileReader fr = new FileReader(args[0]);
 		Scanner sc = new Scanner(fr);
 		numberOfSimulation = sc.nextInt();
 		sc.nextLine();
@@ -45,7 +45,7 @@ public class Program {
 				throw new NotCorrectFileException("Simulation integer is positive and not more than MAX_VALUE");
 		} catch (NotCorrectFileException e){
 			System.out.println(e.getMessage());
-			System.exit(1);
+			System.exit(-1);
 		} catch (InputMismatchException e) {
 			printError();
 		}
@@ -71,7 +71,7 @@ public class Program {
 				obj.add(a);
 			} catch (NotCorrectFileException e) {
 				System.out.println(e.getMessage());
-				System.exit(1);
+				System.exit(-1);
 			} catch (NotSuchClassException | NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}

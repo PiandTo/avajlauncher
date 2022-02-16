@@ -19,15 +19,15 @@ import java.util.ArrayList;
 
 	protected void conditionsChanged() throws IOException {
 		ArrayList<Flyable> arr = new ArrayList<>(observers);
-		for (int i = 0; i < arr.size(); i++)
-			arr.get(i).updateConditions();
-//		arr.forEach(n -> {
-//			try {
-//				n.updateConditions();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		});
+//		for (int i = 0; i < arr.size(); i++)
+//			arr.get(i).updateConditions();
+		arr.forEach(n -> {
+			try {
+				n.updateConditions();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	};
 }
 
