@@ -1,9 +1,10 @@
 package edu.school21.launcher.models;
 
+import java.io.IOException;
 import java.util.Locale;
 
 public class AircraftFactory {
-    public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) throws NotSuchClassException {
+    public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) throws NotSuchClassException, IOException {
         Flyable flyable;
         switch (type.toLowerCase()) {
             case "baloon":
